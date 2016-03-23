@@ -1,9 +1,13 @@
 var express = require('express');
+var MongoClient=require("mongodb".MongoClient);
+var engines = require("jade");
+var assert = require("assert");
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -16,6 +20,35 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+MongoClient.connect('mongodb://localhost:27017/random_dungeon_gen', function(err, db){
+  assert.equal(null, err);
+  console.log('Connected To Mongo Db Successfully');
+
+  // app.get('/',function(req, res){
+  //   db.collection('flowers').find({}, {"name":true,"color":true}).toArray(function(err, flowerdocs){
+  //     if (err){return res.sendStatus(500); }
+  //
+  //     var colordocs=db.collection('flowers').distinct("color",function(err, colordocs){
+  //       if (err) {return res.sendStatus(500);}
+  //       return res.render('allflowers',{'flowers':flowerdocs,"flowerColors":colordocs})
+  //     });
+  //   });
+  // });
+
+  app.get('/', function(req,res){
+
+    db.collection('Dungeons').find().toArray(function(err,dungeons_docs){
+      // if an error happens, 500 and log
+      if (err) {return res.sendStatus(500);console.log('Error finding collection via MongoDB client')}
+      // otherwise take the data and display it
+      return res.render('allDungeons',{'Dungeons': dungeons_docs});
+    });
+  });
+  app.use(function(req, res){
+    res.sendStatus(404);
+  })
+})
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

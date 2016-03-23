@@ -14,6 +14,7 @@ var users = require('./routes/users');
 
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -46,7 +47,11 @@ MongoClient.connect('mongodb://localhost:27017/random_dungeon_gen', function(err
   });
   app.use(function(req, res){
     res.sendStatus(404);
-  })
+  });
+  var server = app.listen(3050, function(){
+    var port = server.address().port;
+    console.log("Server is listening to port" + port);
+  });
 });
 
 app.use(logger('dev'));
@@ -111,7 +116,7 @@ client.post('statuses/update',{status: testPost},function(error,tweet,response){
   else{
     console.log(error);
   }
-})
+});
 module.exports = app;
 
 // Major Furnishings

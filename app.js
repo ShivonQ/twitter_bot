@@ -1,5 +1,5 @@
 var express = require('express');
-var MongoClient=require("mongodb".MongoClient);
+var MongoClient=require("mongodb").MongoClient;
 var engines = require("jade");
 var assert = require("assert");
 var path = require('path');
@@ -47,7 +47,7 @@ MongoClient.connect('mongodb://localhost:27017/random_dungeon_gen', function(err
   app.use(function(req, res){
     res.sendStatus(404);
   })
-})
+});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

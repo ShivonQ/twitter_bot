@@ -13,6 +13,8 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "node-twitterbot": "^0.2.2",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "Twitter": "~1.2.5",
+    "mongodb": "~2.1.3"
   }
 }

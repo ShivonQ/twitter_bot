@@ -50,6 +50,6 @@ var Room =  function(dungeon_id_num,room_number){
     //    this.number_of_doors=4;
     //}
 };
-//var a = new Dungeon;
-//console.log(a);
-module.exports=Dungeon();
+var a = new Dungeon();
+//var a = new Dungeon();
+module.exports=(a);

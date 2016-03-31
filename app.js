@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var dung_generator=require('../random_data/data_and_dice.js');
+var dung_generator=require('./random_data/data_and_dice.js');
 
 var mongoose= require("mongoose");
 var session= require('express-session');
@@ -115,7 +115,7 @@ app.use(function(err, req, res, next) {
   });
 });
 setInterval(function(){
-  var timePost=String(new Date.now());
+  var timePost=String(new Date);
   var testPost="| Dimensions: 20 x 30 | Walls: Worked Stone | Water Source: Fountain | Doors: N & S & E Walls | Trap: Yes [ECL+2] | Encounter: Yes [ECL-1] |"
   client.post('statuses/update',{status: timePost},function(error,tweet,response){
     if(!error){
@@ -125,7 +125,7 @@ setInterval(function(){
       console.log(error);
     }
   });
-}, 50000);
+}, 500000);
 
 module.exports = app;
 

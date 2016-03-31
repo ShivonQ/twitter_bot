@@ -1,4 +1,4 @@
-var major_furnishing_table={"1":"Alcove","2":"Altar","3":"Arch","4":"Arrowslit","5":"Balcony","6":"Barrel","7":"Bed","8":"Bench","9":"Bookcase","10":"Brazier"
+var major_features_table={"1":"Alcove","2":"Altar","3":"Arch","4":"Arrowslit","5":"Balcony","6":"Barrel","7":"Bed","8":"Bench","9":"Bookcase","10":"Brazier"
 ,"11":"Cage","12":"Cauldron","13":"Carpet","14":"Carving","15":"Casket","16":"Catwalk","17":"Chair","18":"Chandelier","19":"Charcoal Bin","20":"Chasm"
 ,"21":"Chest","22":"Chest of Drawers","23":"Chute","24":"Coat Rack","25":"Collapsed Wall","26":"Crate","27":"Cupboard","28":"Curtain","29":"Divan","30":"Dome"
 ,"31":"Broken Door","32":"Dung Heap","33":"Evil Sigil","34":"Fallen Stones","35":"Firepit","36":"Fireplace","37":"Font","38":"Forge","39":"Fountain","40":"Broken Furniture"
@@ -32,51 +32,7 @@ var wall_type_table={"1":"Masonry","2":"Superior Masonry","3":"Reinforced Masonr
 //TODO:   6: Make an interval (use the one at the bottom of everything here) based website that does a function every hour
 //TODO:   7:
 
- var Dungeon = function () {
-     this.date_created = new Date();
-     this.dungeon_id=dungeon_id_gen();
-     this.all_rooms=[];
-     this.number_of_rooms=random_num_with_single_param(6)+2;
-     //todo make the wall type randomize for dungeon
-     for (var i = 0;i<this.number_of_rooms;i++){
 
-         var room = new Room(this.dungeon_id,(i+1));
-         this.all_rooms.push(room);
-     }
- //    Todo Make the rooms generate a reasonable amount of doors, or none at all.
- };
- var Room =  function(dungeon_id_num,room_number){
-     this.l_w_h=roll_room_size();
-     this.dungeon_id=dungeon_id_num;
-     this.room_number=room_number;
-     this.weird_feature="None";
-     this.major_features=[];
-     this.minor_features=[];
-     //maybe hand out weird features
-     var check_for_weirdness=random_num_with_single_param(100)+1;
-     if (check_for_weirdness>=96){
-         this.weird_feature=weird_features_table[random_num_with_single_param(22)+1];
-     }
-     var how_many_major=random_num_with_single_param(2)+1;
-     var how_many_minor=random_num_with_single_param(3)+1;
-     //hand out major features
-     for ( var j = 0; j <= how_many_major; j++ ){
-         var feature=major_furnishing_table[random_num_with_single_param(100)+1];
-         this.major_features.push(feature);
-     }
-     //Hand out minor features
-     for ( var k = 0; k <= how_many_minor; k++){
-         var minor_feature=minor_features_table[random_num_with_single_param(100)+1];
-         this.minor_features.push(minor_feature);
-     }
-
-
-
-     //this.number_of_doors=random_num_with_single_param(3)+2;
-     //if (this.number_of_doors>4){
-     //    this.number_of_doors=4;
-     //}
- };
 //This is working Flawlessly
 
 var roll_percentile=function(){
@@ -116,17 +72,32 @@ var random_num_with_single_param=function(max_num){
 }
 //This is working perfectly
 var roll_room_size=function(){
-    var length=(Math.floor(Math.random()*12)+1)*5;
-    if (length<=5){length=10;}
-    var width=(Math.floor(Math.random()*12)+1)*5;
-    if (width<=5){width=10;}
-    var height=(Math.floor(Math.random()*12)+1)*5;
-    if (height<=5){height =10;}
-    var array_of_dimensions=[length,width,height];
-    console.log(length+"  "+width+"  "+height+"--> Came from roll_room_size()");
-    return array_of_dimensions;
+    var dimension_array=[];
+    for( var j=0; j<3;j++){
+        var size=(Math.floor(Math.random()*12)+1)*5;
+        if(size<=5){ size=10;}
+        dimension_array.push(size)
+    }
+    console.log(dimension_array[0]+"  "+dimension_array[1]+"  "+dimension_array[2]+"--> Came from roll_room_size()");
+    return dimension_array
+    //var length=(Math.floor(Math.random()*12)+1)*5;
+    //if (length<=5){length=10;}
+    //var width=(Math.floor(Math.random()*12)+1)*5;
+    //if (width<=5){width=10;}
+    //var height=(Math.floor(Math.random()*12)+1)*5;
+    //if (height<=5){height =10;}
+    //var array_of_dimensions=[length,width,height];
 };
 
 var one_day=86400000;
+module.exports={roll_percentile:function(){},
+    dungeon_id:function(){},
+    random_num_with_single_param:function(){},
+    roll_room_size:function(){},
+    major_features_table:major_features_table,
+    minor_features_table:minor_features_table,
+    weird_features_table:weird_features_table
+
+}
 
 //{ date_created: Tue Mar 22 2016 18:02:22 GMT-0500 (Central Daylight Time),dungeon_id: 'q31xsE',all_rooms:[ { l_w_h:[20,10,30],dungeon_id:'q31xsE',room_number:1,weird_feature: 'None',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2'] },{ l_w_h:[Object],dungeon_id:'q31xsE',room_number: 2,weird_feature: 'None',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2'] },{ l_w_h:[Object],dungeon_id: 'q31xsE',room_number: 3,weird_feature: 'Ice Floor',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2']} ],number_of_rooms: 3 }

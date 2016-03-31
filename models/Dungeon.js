@@ -3,7 +3,7 @@
  */
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
-
+var Room = require('./Room.js');
 var dungeons_Schema= Schema({
     date_created:[{type:Date,default:Date.now}],
     dungeon_id:{type:String},

@@ -6,13 +6,13 @@ var Schema=mongoose.Schema;
 var Room = require('./Room.js');
 var dungeons_Schema= Schema({
     date_created:[{type:Date,default:Date.now}],
-    dungeon_id:{type:String},
+    //dungeon_id:{type:String},
     all_rooms:[Room],
     number_of_rooms:{type:Number}
 
 });
 
-var Dungeon_Schema = mongoose.model('Dungeon',dungeons_Schema);
+var Dungeon_Schema = mongoose.model('Dungeon',dungeons_Schema,'Dungeons');
 
 module.exports = Dungeon_Schema;
 

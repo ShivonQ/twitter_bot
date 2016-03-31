@@ -5,19 +5,19 @@ block content
     h1 title
     ul
       each dungeon in Dungeons
-        li #{dungeon.dungeon_id} created: #{dungeon.date_created} Number of Rooms: #{dungeon.number_of_rooms}
+        li #{dungeon.Schema.ObjectId} created: #{dungeon.date_created} Number of Rooms: #{dungeon.number_of_rooms}
         ol
-          each room in dungeon
-            li Room Dimensions: #{room.l_w_h}
+          each room in Dungeons.all_rooms
+            li Room Dimensions: #{room.length} x #{room.height} x #{room.width}
             ul
               li Strange Features: #{room.weird_feature}
             ul
               li Major Features:
-              each maj_feature in room.major_features
-                li #{maj_feature}
+                each maj_feature in room.major_features
+                  li #{maj_feature}
             ul
               li Minor Features:
-              each min_feature in room.minor_features
-                li #{min_feature}
+                each min_feature in room.minor_features
+                  li #{min_feature}
 
 

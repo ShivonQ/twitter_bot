@@ -71,29 +71,18 @@ var random_num_with_single_param=function(max_num){
     return number;
 }
 //This is working perfectly
-var roll_room_size=function(){
-    var dimension_array=[];
-    for( var j=0; j<3;j++){
-        var size=(Math.floor(Math.random()*12)+1)*5;
-        if(size<=5){ size=10;}
-        dimension_array.push(size)
+var roll_room_dimension=function() {
+    var size = (Math.floor(Math.random() * 12) + 1) * 5;
+    if (size <= 5) {
+        size = 10;
     }
-    console.log(dimension_array[0]+"  "+dimension_array[1]+"  "+dimension_array[2]+"--> Came from roll_room_size()");
-    return dimension_array
-    //var length=(Math.floor(Math.random()*12)+1)*5;
-    //if (length<=5){length=10;}
-    //var width=(Math.floor(Math.random()*12)+1)*5;
-    //if (width<=5){width=10;}
-    //var height=(Math.floor(Math.random()*12)+1)*5;
-    //if (height<=5){height =10;}
-    //var array_of_dimensions=[length,width,height];
 };
 
 var one_day=86400000;
 module.exports={roll_percentile:function(){},
-    dungeon_id:function(){},
+    dungeon_id_gen:function(){},
     random_num_with_single_param:function(){},
-    roll_room_size:function(){},
+    roll_room_dimension:function(){},
     major_features_table:major_features_table,
     minor_features_table:minor_features_table,
     weird_features_table:weird_features_table

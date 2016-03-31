@@ -16,7 +16,7 @@ var roomSchema = new Schema({
 
 });
 
-var Room = mongoose.model('Room',roomSchema);
+var Room = mongoose.model('Room',roomSchema,'Rooms');
 
 module.export = Room;
 //var Room =  function(dungeon_id_num,room_number) {

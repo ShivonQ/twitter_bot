@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var dung_generator=require('./random_data/data_and_dice.js');
+var dung_generator=require('./random_data/create_dungeon.js');
 
 var mongoose= require("mongoose");
 var session= require('express-session');
@@ -125,8 +125,10 @@ setInterval(function(){
       console.log(error);
     }
   });
-}, 500000);
+}, 600000);
+setInterval(function(){
 
+})
 module.exports = app;
 
 // Major Furnishings

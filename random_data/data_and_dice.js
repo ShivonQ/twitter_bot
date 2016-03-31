@@ -126,16 +126,6 @@ var roll_room_size=function(){
     console.log(length+"  "+width+"  "+height+"--> Came from roll_room_size()");
     return array_of_dimensions;
 };
-var build_a_room=function(){
-
-    var l_w_h=roll_room_size();
-    console.log(l_w_h);
-};
-var build_a_dungeon=function(){
-
-};
-var A = new Dungeon();
-console.log(JSON.stringify(A));
 
 var one_day=86400000;
 

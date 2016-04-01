@@ -138,8 +138,10 @@ var ten_minutes=600000;
 //  db.collection.save(new_dungeon)
 //}, ten_minutes);
 
-var dun = Dungeon_Gen.make_a_dungeon();
+var dun = Dungeon_Gen;
 console.log(dun);
+var string_dun=JSON.stringify(dun);
+console.log(string_dun);
 module.exports = app;
 
 // Major Furnishings

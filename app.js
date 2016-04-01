@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var Dungeon=require('./random_data/create_dungeon.js');
+var Dungeon_Gen=require('./random_data/data_and_dice.js');
 
 var mongoose= require("mongoose");
 var session= require('express-session');
@@ -130,13 +130,16 @@ var a_day=86400000;
 var ten_minutes=600000;
 
 //var temp_dung=new Dungeon();
-var immediate_dungeon=new Dungeon();
-console.log(immediate_dungeon);
-db.collection.save(immediate_dungeon);
-setInterval(function(){
-var new_dungeon=dung_generator;
-  db.collection.save(new_dungeon)
-}, ten_minutes);
+//var immediate_dungeon=new Dungeon();
+//console.log(immediate_dungeon);
+//db.collection.save(immediate_dungeon);
+//setInterval(function(){
+//var new_dungeon=dung_generator;
+//  db.collection.save(new_dungeon)
+//}, ten_minutes);
+
+var dun = Dungeon_Gen.make_a_dungeon();
+console.log(dun);
 module.exports = app;
 
 // Major Furnishings

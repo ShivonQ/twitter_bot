@@ -3,23 +3,8 @@
  */
 var random_functions = require('./data_and_dice.js');
 
-var Dungeon = function () {
-    this.date_created = new Date();
-    this.dungeon_id=random_functions.dungeon_id_gen();
-    this.all_rooms=[];
-    this.number_of_rooms=random_functions.random_num_with_single_param(6)+2;
-    //todo make the wall type randomize for dungeon
-    for (var i = 0;i<this.number_of_rooms;i++){
-
-        var room = new Room(this.dungeon_id,(i+1));
-        this.all_rooms.push(room);
-    }
-    //    Todo Make the rooms generate a reasonable amount of doors, or none at all.
-};
 var Room =  function(dungeon_id_num,room_number){
-    this.length=random_functions.roll_room_dimension();
-    this.height=random_functions.roll_room_dimension();
-    this.width=random_functions.roll_room_dimension();
+    this.l_w_h=random_functions.roll_room_size();
     this.dungeon_id=dungeon_id_num;
     this.room_number=room_number;
     this.weird_feature="None";
@@ -49,7 +34,27 @@ var Room =  function(dungeon_id_num,room_number){
     //if (this.number_of_doors>4){
     //    this.number_of_doors=4;
     //}
+
 };
-var a = new Dungeon();
-//var a = new Dungeon();
-module.exports=(a);
+
+var Dungeon = function () {
+    this.date_created = new Date();
+    this.dungeon_id=random_functions.dungeon_id_gen();
+    this.all_rooms=[];
+    this.number_of_rooms=random_functions.random_num_with_single_param(6)+2;
+    //todo make the wall type randomize for dungeon
+    for (var i = 0;i<this.number_of_rooms;i++){
+
+        var room = new Room(this.dungeon_id,(i+1));
+        this.all_rooms.push(room);
+    }
+    //    Todo Make the rooms generate a reasonable amount of doors, or none at all.
+};
+
+var make_a_dungeon=function(){
+    var dun = new Dungeon();
+    return dun;
+};
+module.exports={make_a_dungeon:function(){},Dungeon:function(){}};
+var a = make_a_dungeon();
+console.log(a);

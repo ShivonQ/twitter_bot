@@ -5,10 +5,10 @@ block content
     h1 title
     ul
       each dungeon in Dungeons
-        li #{dungeon.Schema.ObjectId} created: #{dungeon.date_created} Number of Rooms: #{dungeon.number_of_rooms}
+        li #{dungeon.ObjectId} created: #{dungeon.date_created} Number of Rooms: #{dungeon.number_of_rooms}
         ol
-          each room in Dungeons.all_rooms
-            li Room Dimensions: #{room.length} x #{room.height} x #{room.width}
+          each room in dungeon.all_rooms
+            li Room Dimensions (L  W  H): #{room.l_w_h[0]} x #{room.l_w_h[1]} x #{room.l_w_h[2]}
             ul
               li Strange Features: #{room.weird_feature}
             ul

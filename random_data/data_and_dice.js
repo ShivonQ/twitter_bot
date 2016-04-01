@@ -133,20 +133,26 @@ var make_a_dungeon=function(){
     console.log(dun)
     return dun;
 };
+
 //
 //var dun = make_a_dungeon();
 //var a = make_a_dungeon();
 //console.log(a);
+Dungeon.prototype.gen_one=function gen_one(){
+    make_a_dungeon()
+}
+
 var one_day=86400000;
-module.exports={make_a_dungeon:function(){}}
-//module.exports={roll_percentile:function(){},
-//    dungeon_id_gen:function(){},
-//    random_num_with_single_param:function(){},
-//    roll_room_size:function(){},
-//    major_features_table:major_features_table,
-//    minor_features_table:minor_features_table,
-//    weird_features_table:weird_features_table
-//
-//}
+//module.exports={make_a_dungeon:function(){}}
+module.exports={roll_percentile:function(){},
+    dungeon_id_gen:function(){},
+    random_num_with_single_param:function(){},
+    roll_room_size:function(){},
+    major_features_table:major_features_table,
+    minor_features_table:minor_features_table,
+    weird_features_table:weird_features_table,
+    make_a_dungeon:function(){}
+
+}
 
 //{ date_created: Tue Mar 22 2016 18:02:22 GMT-0500 (Central Daylight Time),dungeon_id: 'q31xsE',all_rooms:[ { l_w_h:[20,10,30],dungeon_id:'q31xsE',room_number:1,weird_feature: 'None',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2'] },{ l_w_h:[Object],dungeon_id:'q31xsE',room_number: 2,weird_feature: 'None',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2'] },{ l_w_h:[Object],dungeon_id: 'q31xsE',room_number: 3,weird_feature: 'Ice Floor',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2']} ],number_of_rooms: 3 }

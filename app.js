@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var Dungeon_Gen=require('./random_data/data_and_dice');
+var Dungeon_Gen=require('./random_data/data_and_dice.js');
 
 var mongoose= require("mongoose");
 var session= require('express-session');

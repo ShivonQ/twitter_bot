@@ -84,13 +84,13 @@ var gen_features=function(array_of_features, number_of_features){
     var return_array_of_features=[];
     for(var j =0;j<number_of_features;j++){
 
-        var feature=array_of_features[random_num_with_single_param(100)+1];
+        var feature=array_of_features[random_num_with_single_param(100)];
         return_array_of_features.push(feature);
     }
     return return_array_of_features;
 }
 var Dungeon = function () {
-    this.date_created = new Date();
+    this.date_created = String(new Date()).slice(0,25);
     this.dungeon_id=dungeon_id_gen();
     this.all_rooms=[];
     this.number_of_rooms=random_num_with_single_param(6)+2;
@@ -106,54 +106,25 @@ var Room =  function(dungeon_id_num,room_number){
     this.dungeon_id=dungeon_id_num;
     this.room_number=room_number;
     this.weird_feature="None";
+
     var check_for_weirdness=random_num_with_single_param(100)+1;
-    if (check_for_weirdness>=96){
+    //Bizzarre Features?
+    if (check_for_weirdness>=80){
         this.weird_feature=weird_features_table[random_num_with_single_param(21)];
     }
+    //How many of each type of feature
     var how_many_major=random_num_with_single_param(2)+1;
-    var how_many_minor=random_num_with_single_param(3)+1
-
+    var how_many_minor=random_num_with_single_param(3)+1;
+    //What features for each type of feature
     this.major_features=gen_features(major_features_table,how_many_major);
     this.minor_features=gen_features(minor_features_table,how_many_minor);
 
-    for ( var j = 0; j <= how_many_major; j++ ){
-        var feature=major_features_table[random_num_with_single_param(100)+1];
-        this.major_features.push(feature);
-    }
+    };
 
-
-
-    //this.number_of_doors=random_num_with_single_param(3)+2;
-    //if (this.number_of_doors>4){
-    //    this.number_of_doors=4;
-    //}
-};
 var make_a_dungeon=function(){
     var dun = new Dungeon();
-    console.log("Making New Dungeon Object"+dun)
+    console.log("Making New Dungeon Object"+dun);
     return dun;
 };
-
-//
-//var dun = make_a_dungeon();
-//var a = make_a_dungeon();
-//console.log(a);
-Dungeon.prototype.gen_one=function gen_one(){
-    make_a_dungeon()
-}
-
 var one_day=86400000;
 module.exports=make_a_dungeon();
-//module.exports={make_a_dungeon:function(){}}
-//module.exports={roll_percentile:function(){},
-//    dungeon_id_gen:function(){},
-//    random_num_with_single_param:function(){},
-//    roll_room_size:function(){},
-//    major_features_table:major_features_table,
-//    minor_features_table:minor_features_table,
-//    weird_features_table:weird_features_table,
-//    make_a_dungeon:function(){}
-//
-//}
-
-//{ date_created: Tue Mar 22 2016 18:02:22 GMT-0500 (Central Daylight Time),dungeon_id: 'q31xsE',all_rooms:[ { l_w_h:[20,10,30],dungeon_id:'q31xsE',room_number:1,weird_feature: 'None',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2'] },{ l_w_h:[Object],dungeon_id:'q31xsE',room_number: 2,weird_feature: 'None',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2'] },{ l_w_h:[Object],dungeon_id: 'q31xsE',room_number: 3,weird_feature: 'Ice Floor',major_features: ['Feature 1','Feature 2'],minor_features: ['Minor feature 1','minor feature 2']} ],number_of_rooms: 3 }

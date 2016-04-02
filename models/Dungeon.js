@@ -6,9 +6,10 @@ var Schema=mongoose.Schema;
 var Room = require('./Room.js');
 var dungeons_Schema= Schema({
     date_created:[{type:Date,default:Date.now}],
-    //dungeon_id:{type:String},
-    all_rooms:[Room],
-    number_of_rooms:{type:Number}
+    dungeon_id:{type:String},
+    number_of_rooms:{type:Number},
+    all_rooms:[Room]
+
 
 });
 

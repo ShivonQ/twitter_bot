@@ -6,3 +6,36 @@ body {
 a {
   color: #00B7FF;
 }
+div.dungeon_div{
+  padding: 10px;
+  border: groove;
+  width: 80%;
+  margin: 10px;
+}
+.room_num_li{
+
+}
+.room{
+
+}
+
+ol {
+  color: black;
+  list-style-type: none;
+}
+
+li.banner_li {
+  position: relative;
+  font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+  margin-bottom: 20px;
+}
+
+.room {
+  font: 12px/1.5 Helvetica, sans-serif;
+  padding-left: 60px;
+  color: #555;
+}
+
+span {
+  position: static;
+}

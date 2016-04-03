@@ -10,7 +10,7 @@ router.get('/allDungeons', function(req, res, next) {
   //  request all Dungeon Documents
     Dungeon.find(function(err, dungeonsDocs){
         if(err){return next(err); }
-        return res.render('allDungeons',{Dungeons:dungeonsDocs, error:req.flash('error')});
+        return res.render('allDungeons',{title:'All Dungeons',Dungeons:dungeonsDocs, error:req.flash('error')});
     });
 });
 router.get('/3_rooms',function(req,res,next){

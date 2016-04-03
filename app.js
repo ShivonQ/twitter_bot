@@ -159,10 +159,8 @@ return total_tweets_for_all_rooms;
 };
 setInterval(function(){
   //This is the 24 hour interval function
-  var dun = null;
-  if(dun==null){
-    dun=Dungeon_Gen;
-  }
+  var dun = Dungeon_Gen;
+
 
   var final_number_of_tweets = how_many_tweets(JSON.stringify(dun).length);
   console.log("This will take "+final_number_of_tweets+" Tweets to fully output.")
@@ -183,7 +181,8 @@ setInterval(function(){
     }
   },82800000);
   dun=null;
-}, 30000000);
+  delete dun;
+}, 3000000);
 module.exports = app;
 
 // Major Furnishings

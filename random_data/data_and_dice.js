@@ -92,6 +92,7 @@ var gen_features=function(array_of_features, number_of_features){
 var Dungeon = function () {
     this.date_created = String(new Date()).slice(0,25);
     this.dungeon_id=dungeon_id_gen();
+    this.wall_type=wall_type_table[random_num_with_single_param(8)];
     this.all_rooms=[];
     this.number_of_rooms=random_num_with_single_param(6)+2;
     for (var i = 0;i<this.number_of_rooms;i++){
@@ -106,8 +107,7 @@ var Room =  function(dungeon_id_num,room_number){
     this.dungeon_id=dungeon_id_num;
     this.room_number=room_number;
     this.weird_feature="None";
-
-    var check_for_weirdness=random_num_with_single_param(100)+1;
+    var check_for_weirdness=random_num_with_single_param(100);
     //Bizzarre Features?
     if (check_for_weirdness>=80){
         this.weird_feature=weird_features_table[random_num_with_single_param(21)];
@@ -121,10 +121,15 @@ var Room =  function(dungeon_id_num,room_number){
 
     };
 
-var make_a_dungeon=function(){
-    var dun = new Dungeon();
-    console.log("Making New Dungeon Object"+dun);
+function make_a_dungeon(){
+    var dun = null;
+    if(dun==null){
+        dun=new Dungeon();
+    }else{
+        dun= new Dungeon();
+    }
+    console.log("Making New Dungeon Object: "+dun.dungeon_id);
     return dun;
 };
 var one_day=86400000;
-module.exports=make_a_dungeon();
+module.exports={newDun:function(){return make_a_dungeon();}}

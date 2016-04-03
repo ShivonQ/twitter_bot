@@ -7,8 +7,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Dungeon_Gen = require('./random_data/data_and_dice');
 
-var Dungeon_Gen = require('./random_data/data_and_dice.js');
+
 var Dungeon = require('./models/Dungeon');
 var Room = require('./models/Room');
 var mongoose = require("mongoose");
@@ -123,7 +124,8 @@ var insert_dun_to_db = function (a_dungeon) {
         date_created: a_dungeon.date_created,
         dungeon_id: a_dungeon.dungeon_id,
         number_of_rooms: a_dungeon.number_of_rooms,
-        all_rooms: a_dungeon.all_rooms
+        all_rooms: a_dungeon.all_rooms,
+        wall_type:a_dungeon.wall_type
     });
     new_dungeon_to_db.save(function (err) {
         if (err) {
@@ -159,32 +161,52 @@ var seperate_rooms_from_dungeon = function (dun) {
     }
     return total_tweets_for_all_rooms;
 };
+//TODO this is one of my attempts at solving my issue
+//var start_interval_for_dun=setInterval(function(){run_dun()},3000);
+//
+//function run_dun(){
+//    dun=Dungeon_Gen;
+//    console.log(dun.number_of_rooms);
+//    return dun;
+//}
+//
+//function reset_dun(){
+//    clearInterval(start_interval_for_dun);
+//}
 setInterval(function () {
     //This is the 24 hour interval function
-    var dun = Dungeon_Gen;
 
-
+    var dun = Dungeon_Gen.newDun();
+    var room_tweet_counter = 0;
     var final_number_of_tweets = how_many_tweets(JSON.stringify(dun).length);
-    console.log("This will take " + final_number_of_tweets + " Tweets to fully output.")
+    console.log("This will take " + final_number_of_tweets + " Tweets to fully output.");
     var how_often_to_tweet_variable = how_often_to_tweet(final_number_of_tweets);
     insert_dun_to_db(dun);
     //FIGURE OUT THE INTERVAl
     //TODO uncomment and then run this aspect
+    //String(new Date()).slice(0,25)
+    var first_tweet = "Dungeon ID: " + dun.dungeon_id + " was created " + String(dun.date_created).slice(0,15) + " and has " + dun.number_of_rooms + " rooms and " +dun.wall_type+" walls.";
+    client.post('statuses/update', {status: first_tweet}, function (err, tweet, response) {
+        if (!err) {console.log("TWEETED:" + tweet)}
+        else {console.log(err)}
+    });
     setInterval(function () {
         //  THIS IS THE variable INTERVAL FUNCTION:  FIGURE OUT HOW MANY TWEETS determined by sting length
 
+
     }, how_often_to_tweet_variable);
-    client.post('statuses/update', {status: "A"}, function (error, tweet, response) {
-        if (!error) {
-            console.log(tweet);
-        }
-        else {
-            console.log(error);
-        }
-    }, 82800000);
-    dun = null;
-    delete dun;
-}, 3000000);
+    //client.post('statuses/update', {status: "A"}, function (error, tweet, response) {
+    //    if (!error) {
+    //        console.log(tweet);
+    //    }for(var j=0;j<dun.all_rooms.length;j++){
+    //
+    //    }
+    //    else {
+    //        console.log(error);
+    //    }
+    //}, 82800000);
+}, 30000000);
+//clearInterval()
 module.exports = app;
 
 // Major Furnishings

@@ -3,18 +3,27 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: url(../images/parchment2.jpg) repeat;
 }
+legend{
+  border: groove;
+  color: black;
+}
 
+li{
+  list-style-type:none;
+}
 a {
   color: black  ;
 }
+.room_div{
+  border: groove;
+  /*float: left;*/
+  position: relative;
+}
 div.dungeon_div{
-  padding: 10px;
+  /*padding: 10px;*/
   border: groove;
   width: 80%;
   margin: 10px;
-}
-.room_num_li{
-
 }
 li.nav_link a {
   text-decoration: none; /*remove underlines */
@@ -44,10 +53,6 @@ li.banner_li {
 
 .room {
   font: 12px/1.5 Helvetica, sans-serif;
-  padding-left: 60px;
+  padding-left: 10px;
   color: #555;
-}
-
-span {
-  position: static;
 }

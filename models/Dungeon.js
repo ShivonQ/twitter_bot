@@ -8,7 +8,8 @@ var dungeons_Schema= Schema({
     date_created:[{type:Date,default:Date.now}],
     dungeon_id:{type:String},
     number_of_rooms:{type:Number},
-    all_rooms:[Room]
+    all_rooms:[Room],
+    wall_type:{type:String}
 
 
 });

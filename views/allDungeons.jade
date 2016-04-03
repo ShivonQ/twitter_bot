@@ -2,26 +2,30 @@
    Created by School on 3/22/2016.
 extends layout
 block content
-    h1 title
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"')
+  h1 Dungeon Listings
     ul
       each dungeon in Dungeons
-        div.dungeon_div
-          li.dungeon_li <strong>Dungeon :</strong> #{dungeon._id} was created: #{dungeon.date_created}
-          li.dungeon_li Number of Rooms: #{dungeon.number_of_rooms}
+
+        div.dungeon_div.col-md-4
+          li.dungeon_li <strong>Dungeon :</strong> #{dungeon.dungeon_id}
+          li.dungeon_li Created: #{String(dungeon.date_created).slice(0,15)}
+          li.dungeon_li <strong>Number of Rooms:</strong> #{dungeon.number_of_rooms}
             ol
               each room in dungeon.all_rooms
-                <fieldset><legend><span>Room Number #{room.room_number}</legend>
+                <div class='col-md-4 room_div'>
+                <fieldset class='room_container'><legend>Room Number #{room.room_number}</legend>
                 li.big_room_number.room Room Dimensions (L  W  H): #{room.l_w_h[0]} x #{room.l_w_h[1]} x #{room.l_w_h[2]}
                   ul.room
                     li.room Strange Features: #{room.weird_feature}
                   ul.room Major Features:
                     each maj_feature in room.major_features
                       li.room #{maj_feature}
-                  ul.room
-                    li.room Minor Features:
+                  ul.room Minor Features:
                       each min_feature in room.minor_features
                         li.room #{min_feature}
-                </span></fieldset>
+                </fieldset></div>
+
 
 
 

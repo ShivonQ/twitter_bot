@@ -207,7 +207,7 @@ setInterval(function () {
     //        console.log(error);
     //    }
     //}, 82800000);
-}, 30000000);
+}, 1200000);
 //clearInterval()
 module.exports = app;
 

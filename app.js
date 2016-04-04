@@ -73,14 +73,16 @@ app.use('/', routes);
 app.use('/users', users);
 var mongourl=process.env.MONGOLAB_URI;
 var Twitter = require('twitter');
-//'jjmUSM0GY84uXRRZD5grCKMdV'  ,  '7cm8HQ7pPK33rF20Ju0bObxDsA2AoPUn7oTIlp6Cb0qNhJxYDd'  ,
-//  '708360964744171524-VjgnI4nscSeiBua5B10FBadSeoVUILy'  ,  'OszYVZH0WrVFmmwcYJ5MLlMFF3zTRf8rZsKAn8ILtFsoh'
 
 var client = new Twitter({
     consumer_key: process.env.TWIT_CONSUMER_KEY ,
     consumer_secret: process.env.TWIT_CONSUMER_SECRET,
     access_token_key: process.env.TWIT_ACCESS_TOKEN,
     access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET
+});
+var server = app.listen(process.env.PORT || 3000, function(){
+    var port = server.address().port;
+    console.log("server running on port: " + port);
 });
 
 var params = {screen_name: 'DerdleBop'};

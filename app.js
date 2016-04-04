@@ -7,7 +7,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var Dungeon_Gen = require('./random_data/data_and_dice');
+var Dungeon_Gen = require('./random_data/data_and_dice.js');
 
 
 var Dungeon = require('./models/Dungeon');
@@ -179,7 +179,8 @@ var seperate_rooms_from_dungeon = function (dun) {
 setInterval(function () {
     //This is the 24 hour interval function
 
-    var dun = Dungeon_Gen.newDun();
+    var dun = Dungeon_Gen();
+    console.log(dun);
     var room_tweet_counter = 0;
     var final_number_of_tweets = how_many_tweets(JSON.stringify(dun).length);
     console.log("This will take " + final_number_of_tweets + " Tweets to fully output.");

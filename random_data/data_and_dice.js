@@ -132,4 +132,4 @@ function make_a_dungeon(){
     return dun;
 };
 var one_day=86400000;
-module.exports={newDun:function(){return make_a_dungeon();}}
+module.exports=make_a_dungeon;

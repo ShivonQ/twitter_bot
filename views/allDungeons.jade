@@ -11,6 +11,7 @@ block content
           li.dungeon_li <strong>Dungeon :</strong> #{dungeon.dungeon_id}
           li.dungeon_li Created: #{String(dungeon.date_created).slice(0,15)}
           li.dungeon_li <strong>Number of Rooms:</strong> #{dungeon.number_of_rooms}
+          li.dungeon_li This dungeons walls are made of #{dungeon.wall_type}
             ol
               each room in dungeon.all_rooms
                 <div class='col-md-4 room_div'>

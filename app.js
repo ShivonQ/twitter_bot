@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var Dungeon_Gen = require('./random_data/data_and_dice.js');
-
+var twit_keys=require('./keys_and_such.js');
 
 var Dungeon = require('./models/Dungeon');
 var Room = require('./models/Room');
@@ -18,8 +18,9 @@ var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
 var mongourl=process.env.MONGOLAB_URI;
-var db = mongoose.connect(mongourl);
+var db = mongoose.connect('mongodb://localhost:27017/random_dungeon_gen/');
 
 var app = express();
 app.use(session({'secret': 'Secret Tunnel'}));
@@ -76,15 +77,15 @@ app.use('/users', users);
 var Twitter = require('twitter');
 
 var client = new Twitter({
-    consumer_key: process.env.TWIT_CONSUMER_KEY ,
-    consumer_secret: process.env.TWIT_CONSUMER_SECRET,
-    access_token_key: process.env.TWIT_ACCESS_TOKEN,
-    access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET
+    consumer_key:twit_keys[0] ,
+    consumer_secret:twit_keys[1],
+    access_token_key:twit_keys[2],
+    access_token_secret:twit_keys[3]
 });
-var server = app.listen(process.env.PORT || 3000, function(){
-    var port = server.address().port;
-    console.log("server running on port: " + port);
-});
+//var server = app.listen(process.env.PORT || 3000, function(){
+//    var port = server.address().port;
+//    console.log("server running on port: " + port);
+//});
 
 var params = {screen_name: 'DerdleBop'};
 // client.get('statuses/user_timeline', params, function(error, tweets, response){
@@ -212,7 +213,7 @@ setInterval(function () {
     //        console.log(error);
     //    }
     //}, 82800000);
-}, 1200000);
+}, ten_minutes);
 //clearInterval()
 module.exports = app;
 

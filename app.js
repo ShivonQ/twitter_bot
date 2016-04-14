@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var Dungeon_Gen = require('./random_data/data_and_dice.js');
 var twit_keys=require('./keys_and_such.js');
 
+//Data models, and the db info
 var Dungeon = require('./models/Dungeon');
 var Room = require('./models/Room');
 var mongoose = require("mongoose");
@@ -18,8 +19,12 @@ var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+//
+//this is leftovers from trying to get heroku working
 var mongourl=process.env.MONGOLAB_URI;
+//end heroku thing
+
+var db = mongoose.connect(mongourl);
 var db = mongoose.connect('mongodb://localhost:27017/random_dungeon_gen/');
 
 var app = express();
@@ -75,24 +80,16 @@ app.use('/users', users);
 
 
 var Twitter = require('twitter');
-
+//grab the keys for twitter
 var client = new Twitter({
     consumer_key:twit_keys[0] ,
     consumer_secret:twit_keys[1],
     access_token_key:twit_keys[2],
     access_token_secret:twit_keys[3]
 });
-//var server = app.listen(process.env.PORT || 3000, function(){
-//    var port = server.address().port;
-//    console.log("server running on port: " + port);
-//});
 
 var params = {screen_name: 'DerdleBop'};
-// client.get('statuses/user_timeline', params, function(error, tweets, response){
-//   if (!error) {
-//     console.log(tweets);
-//   }
-// });
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
@@ -157,6 +154,8 @@ var how_often_to_tweet = function (number_of_tweets_required) {
 //var final_number_of_tweets = how_many_tweets(length_of_object);
 //console.log(how_often_to_tweet(final_number_of_tweets)+" milliseconds is how often This twitter bot will tweet to tell the whole dungeon")
 //console.log("There will be "+final_number_of_tweets+" tweets once this is working.");
+
+// TODO not working yet, but this splits off the rooms from the rest of the dungeon
 var seperate_rooms_from_dungeon = function (dun) {
     var total_tweets_for_all_rooms = 0;
     for (var k = 0; k < dun.all_rooms.length; k++) {
@@ -168,6 +167,9 @@ var seperate_rooms_from_dungeon = function (dun) {
     }
     return total_tweets_for_all_rooms;
 };
+
+//TODO make the tweets tweet in reverse order so it appears like a scroll
+
 //TODO this is one of my attempts at solving my issue
 //var start_interval_for_dun=setInterval(function(){run_dun()},3000);
 //

@@ -25,7 +25,7 @@ var mongourl=process.env.MONGOLAB_URI;
 //end heroku thing
 
 var db = mongoose.connect(mongourl);
-var db = mongoose.connect('mongodb://localhost:27017/random_dungeon_gen/');
+//var db = mongoose.connect('mongodb://localhost:27017/random_dungeon_gen/');
 
 var app = express();
 app.use(session({'secret': 'Secret Tunnel'}));
